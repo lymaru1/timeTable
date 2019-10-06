@@ -1,0 +1,40 @@
+			$("#timeButton").click(function(){
+				var tableData = document.getElementById("timeTable");
+				var timeData = new Object();
+				var subject;
+				var subObject;
+
+				for(var i = 1; i < 10 ;i++){
+					for(var j = 1; j<6 ; j++ ){
+						subObject = new Object();
+						subject = tableData.rows[i].cells[j].innerText;
+						if (subject == ''){
+							continue;
+						}
+						switch (j) {
+							case 1:
+								subObject.day = "mon";
+								subObject.subject = subject;
+								break;
+							case 2:
+								subObject.day = "tue";
+								subObject.subject = subject;
+								break;
+							case 3:
+								subObject.day = "wed";
+								subObject.subject = subject;
+								break;
+							case 4:
+								subObject.day = "thu";
+								subObject.subject = subject;
+								break;
+							case 5:
+								subObject.day = "fri";
+								subObject.subject = subject;
+						}
+						timeData[String(i)] = subObject;
+					}
+				}
+				var timeJSON = JSON.stringify(timeData);
+				alert(timeJSON);
+			});

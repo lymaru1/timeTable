@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> 시간표 </title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="css.css">
+		<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+		<link rel="stylesheet" type="text/css" href="ribbon.css">
+		<link rel="stylesheet" type="text/css" href="ribbon-icon.css">
+		<script type="text/javascript" src="/easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="jquery.ribbon.js"></script>
+		<script type="text/javascript" src="excelExport.js"></script>
+		<script src="xlsx/xlsx.js"></script>
+	</head>
+	<body>
+		<div id="divTarget" class="easyui-ribbon" style="width:100%;height:72px">
+			<div title="Home">
+				<div class="ribbon-group2">
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'format',iconCls:'icon-format',plain:true" onclick="javascript:location.reload()">Format</a>
+					</div>
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'save',iconCls:'icon-save',plain:true" onclick="javascript:onSaveStorage()">Browser Save</a>
+					</div>
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'load',iconCls:'icon-search',plain:true" onclick="javascript:onLoadStorage()">Browser Load</a>
+					</div>
+				</div>
+				<div class="ribbon-group-sep2"></div>
+				<div class="ribbon-group2">
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'eSave',iconCls:'icon-edit',toggle:true,plain:true" onclick="javascript:onExcelSave()">excelSave</a>
+					</div>
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'eload',iconCls:'icon-paste',plain:true" onclick="javascript:onExcelLoad()">excelLoad</a>
+					</div>
+				</div>
+				<div class="ribbon-group-sep2"></div>
+				<div class="ribbon-group2">
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'clear',iconCls:'icon-format',plain:true" onclick="javascript:onClear()">Clear</a>
+					</div>
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'save',iconCls:'icon-save',plain:true" onclick="javascript:onSave()">Server Save</a>
+					</div>
+					<div class="ribbon-toolbar">
+						<a href="#" class="easyui-linkbutton" data-options="name:'load',iconCls:'icon-search',plain:true" onclick="javascript:onLoad()">Server Load</a>
+					</div>
+				</div>
+				<div class="ribbon-group-sep2"></div>
+			</div>
+		</div>
+
+		<div class="easyui-layout" style="width:100%;height:700px;">
+			<div id="timeTab" class="easyui-tabs timeSubject" data-options="region:'west',split:true" title="과목" style="width:300px;height:700px;">
+				<div title="1학년">
+			   	 <table class="timeClass" id="timeClass1" style="word-break: break-all;">
+			   		 <tr>
+			   			 <td><div class="item">인터넷윤리</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">컴퓨터구조</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">웹프로그래밍</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">컴퓨터활용</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">웹디자인</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">컴퓨터개론</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">C언어</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">데이터베이스</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">영어</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">비주얼베이직</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">언어와표현</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">웹애니메이션</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">시스템분석및설계</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">운영체제</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">자료구조</div></td>
+			   		 </tr>
+			   	 </table>
+			    </div>
+			    <div title="2학년">
+			   	 <table class="timeClass" id="timeClass2" style="word-break: break-all;">
+			   		 <tr>
+			   			 <td><div class="item">JAVA</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">소프트웨어공학</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">캡스톤디자인</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">DBMS</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">정보처리실무</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">엡프로그래밍실무</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">C++</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">인간관계론</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">생활법률</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">컴퓨터통신</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">UNIX</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">자기주도적삶과행복</div></td>
+			   		 </tr>
+			   	 </table>
+			    </div>
+			    <div title="3학년">
+			   	 <table class="timeClass" id="timeClass3" style="word-break: break-all;">
+			   		 <tr>
+			   			 <td><div class="item">LINUX</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">VASUAL C++</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">JSP</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">DB설계및구축</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">자료구조프로그래밍</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">졸업작품</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">안드로이드프로그래밍</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">컴퓨터알고리즘</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">Ajax프로그래밍</div></td>
+			   		 </tr>
+			   	 </table>
+			    </div>
+			    <div title="4학년">
+			   	 <table class="timeClass" id="timeClass4" style="word-break: break-all;">
+			   		 <tr>
+			   			 <td><div class="item">운영체제실무</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">웹표준프레임워크프로그래밍</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">오픈소스개발</div></td>
+			   		 </tr>
+			   		 <tr>
+			   			 <td><div class="item">고급모바일프로그래밍</div></td>
+			   		 </tr>
+			   	 </table>
+			    </div>
+			</div>
+			<div data-options="region:'center',title:'시간 표',iconCls:'icon-ok'">
+				<div class="timePaner" style="width:100%;float:right">
+					<table class="timeTable" id="timeTable" style="word-break: break-all">
+						<tr>
+							<th>시간</th>
+							<th>월</th>
+							<th>화</th>
+							<th>수</th>
+							<th>목</th>
+							<th>금</th>
+						</tr>
+						<tr>
+							<td>09:00-09:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>10:00-10:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>11:00-11:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>12:00-12:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>13:00-13:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>14:00-14:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>15:00-15:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>16:00-16:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+						<tr>
+							<td>17:00-17:50</td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+							<td class="drop"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<input type="file" name="xlfile" id="excelLoad" hidden />
+		<input type="checkbox" name="useworker" checked hidden />
+		<input type="checkbox" name="userabs" checked hidden />
+		<script>
+			function readyEvent(){
+				$('.timeSubject .item').draggable({
+					revert:true,
+					proxy:'clone'
+				});
+				$('.timePaner td.drop').droppable({
+					accept: '.item',
+					onDrop:function(e,source){
+						if ($(source).hasClass('assigned')){
+							$(this).append(source);
+						} else {
+							var c = $(source).clone().addClass('assigned');
+							$(this).empty().append(c);
+							c.draggable({
+								revert:true
+							});
+						}
+					}
+				});
+				$('.timeSubject').droppable({
+					accept:'.assigned',
+					onDrop:function(e,source){
+						$(source).remove();
+					}
+				});
+			}
+
+			function setEvent() {
+				$('.timePaner .item').draggable({
+					revert: true,
+					proxy: 'clone'
+				});
+			}
+
+			function onSaveStorage() {
+				if (typeof (Storage) !== "undefined") {
+					localStorage.setItem("saveData", $('#timeTable').html());
+				} else {
+					// Sorry! No Web Storage support..
+				}
+			}
+
+			function onLoadStorage() {
+				if (typeof (Storage) !== "undefined") {
+					$('#timeTable').html(localStorage.saveData);
+					readyEvent();
+					setEvent();
+				} else {
+					// Sorry! No Web Storage support..
+				}
+			}
+
+			function onExcelSave() {
+				$('#timeTable').datagrid('toExcel','excel.xls');
+			}
+
+			function onExcelLoad() {
+				$('#excelLoad').click();
+			}
+
+			function onClear() {
+				$('.timePaner td.drop').each(function (index, item) {
+					$(this).html('')
+				});
+			}
+
+			function onSave() {
+				var tableData = $('#timeTable').html();
+				var sendURL = '/fileIOStream.jsp';
+				$.post(sendURL, {
+					fileName : 'index.html',
+					fileDatas : tableData
+				}, function (data, status) {
+					return true;
+				});
+			}
+
+			function onLoad() {
+				var getURL = '/index.html.txt';
+				$.get(getURL, function (data, status) {
+					$('#timeTable').html(data);
+					readyEvent();
+					setEvent();
+					return true;
+				});
+			}
+
+			$(function () {
+				readyEvent();
+				setEvent();
+			})
+
+			$('#timeTab').tabs({
+			  onSelect: function(title){
+				  readyEvent();
+			  }
+			});
+
+			var X = XLSX;
+			var XW = {
+				msg: 'xlsx',
+				worker: './xlsxworker.js'
+			};
+
+			var global_wb;
+			var process_wb = (function() {
+				var HTMLOUT = document.getElementById('timeTable');
+
+				var to_fmla = function to_fmla(workbook) {
+					var result = [];
+					workbook.SheetNames.forEach(function(sheetName) {
+						var formulae = X.utils.get_formulae(workbook.Sheets[sheetName]);
+						if(formulae.length){
+							result.push(formulae.join("\n"));
+						}
+					});
+					return result.join("\n");
+				};
+
+				return function process_wb(wb) {
+					global_wb = wb;
+					var output =  to_fmla(wb);
+
+					HTMLOUT.innerHTML = toTable(output);
+					readyEvent();
+					setEvent();
+				};
+			})();
+
+			var setfmt = window.setfmt = function setfmt() { if(global_wb) process_wb(global_wb); };
+
+			var do_file = (function() {
+				var rABS = typeof FileReader !== "undefined" && (FileReader.prototype||{}).readAsBinaryString;
+				var domrabs = document.getElementsByName("userabs")[0];
+				if(!rABS) domrabs.disabled = !(domrabs.checked = false);
+
+				var use_worker = typeof Worker !== 'undefined';
+				var domwork = document.getElementsByName("useworker")[0];
+				if(!use_worker) domwork.disabled = !(domwork.checked = false);
+
+				var xw = function xw(data, cb) {
+					var worker = new Worker(XW.worker);
+					worker.onmessage = function(e) {
+						switch(e.data.t) {
+							case 'ready': break;
+							case 'e': console.error(e.data.d); break;
+							case XW.msg: cb(JSON.parse(e.data.d)); break;
+						}
+					};
+					worker.postMessage({d:data,b:rABS?'binary':'array'});
+				};
+
+				return function do_file(files) {
+					rABS = domrabs.checked;
+					use_worker = domwork.checked;
+					var f = files[0];
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						if(typeof console !== 'undefined') console.log("onload", new Date(), rABS, use_worker);
+						var data = e.target.result;
+						if(!rABS) data = new Uint8Array(data);
+						if(use_worker) xw(data, process_wb);
+						else process_wb(X.read(data, {type: rABS ? 'binary' : 'array'}));
+					};
+					if(rABS) reader.readAsBinaryString(f);
+					else reader.readAsArrayBuffer(f);
+				};
+			})();
+
+			(function() {
+				var xlf = document.getElementById('excelLoad');
+				if(!xlf.addEventListener) return;
+				function handleFile(e) { do_file(e.target.files); }
+				xlf.addEventListener('change', handleFile, false);
+			})();
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-36810333-1']);
+			_gaq.push(['_trackPageview']);
+
+			function toTable(data) {
+				var dataArray = data.split("\n");
+				var compare ="";
+				var str = "<table class=\"timeTable\" id=\"timeTable\" style=\"word-break: break-all\">";
+				str +="<tr><th>시간</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr>";
+				dataArray.splice(0,6);
+				for(var i = 0; i<9; i++){
+					str +="<tr>";
+					for(var j = 0 ; j <6; j++){
+						if( j == 0){
+							str += "<td>";
+							if(i>7){
+								if(dataArray[0].substring(0,1)==String.fromCharCode(j+65)){
+									str += dataArray[0].substring(5);
+									dataArray.splice(0,1);
+								}
+							}
+							else {
+								if(dataArray[0].substring(0,1)==String.fromCharCode(j+65)){
+									str += dataArray[0].substring(4);
+									dataArray.splice(0,1);
+								}
+							}
+							str += "</td>";
+						}
+						else{
+							str += "<td class=\"drop\">";
+							try{
+								if(i>7){
+									if(dataArray[0].substring(0,1)==String.fromCharCode(j+65)){
+										str += "<div class=\"item assigned\">"+dataArray[0].substring(5)+"</div>";
+										dataArray.splice(0,1);
+									}
+								}
+								else {
+									if(dataArray[0].substring(0,1)==String.fromCharCode(j+65)){
+										str += "<div class=\"item assigned\">"+dataArray[0].substring(4)+"</div>";
+										dataArray.splice(0,1);
+									}
+								}
+							}
+							catch (e) {
+							}
+							finally {
+								str += "</td>";
+							}
+						}
+					}
+					str += "</tr>";
+				}
+				str += "</table>";
+				return str;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html" charset="utf-8">
+	</head>
+	<body>
+		<input id='lastname'>
+		<button id='set' onclick ="javacript:onSet()">Setting</button>
+		<button id='load' onclick = "javascript:onCall()">Load</button>
+		<div id="result"></div>
+		<div id="resultSesstion"></div>
+	<script>
+//		if (typeof(Storage) !== "undefined"){
+//			localStorage.setItem("lastname", "Smith");
+//			document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+//		}
+//		else{
+//			document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+//		}
+function onSet(){
+	localStorage.setItem("lastname", document.getElementById("lastname").value);
+	sessionStorage.setItem("lastname", document.getElementById("lastname").value);
+	document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+	document.getElementById("resultSesstion").innerHTML = sessionStorage.getItem("lastname");
+}
+function onCall(){
+	document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+	document.getElementById("resultSesstion").innerHTML = sessionStorage.getItem("lastname");
+}
+	</script>
+	</body>
+</html>

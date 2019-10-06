@@ -1,0 +1,59 @@
+ul.topMenu {
+    overflow: hidden;
+    background-color: black;
+}
+
+ul.topMenu li {
+    list-style-type: none;
+    margin-left: 30px;
+    float: left;
+}
+
+ul.topMenu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    background-color: black;
+}
+
+.title {
+    padding-left: 10px;
+    border-left: solid 15px black;
+    font-size: 30px;
+}
+
+.content {
+    background-color: #EEEEEE;
+    float: left;
+    border: 1px solid black;
+    width: 100%;
+}
+
+.floor {
+    background-color: #EEEEEE;
+    clear: both;
+    border: 1px solid black;
+    width: 100%;
+}
+.timeTable th {
+	background-color:#888888;
+	table-layout: fixed;
+}
+.timeTable .timeTable th, .timeTable td {
+	width: 1000px;
+	height: 65px;
+	text-align:center;
+	padding:4px;
+	border:1px solid #dddddd;
+}
+.timeTable tr:nth-child(odd){
+	background-color: #cccccc;
+}
+.timeTable tr:nth-child(even){
+	background-color: white;
+}
+.timeClass td{
+    border: 1px solid black;
+}
